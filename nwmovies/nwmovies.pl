@@ -233,28 +233,20 @@ if( exists( $hash{ lc($ARGV[0]) } )  || exists( $binkhash{ lc($ARGV[0]) } )   ) 
 	if( $mplayer ne "" && !$played ) { 
 		if( $fullscreen ) { 
 			# Note:  -vo x11 also works for older versions of mplayer
-			$command = sprintf("%s -x %s -y %s -vo sdl -vm %s", $mplayer, $width, $height, $hash{ lc($ARGV[0]) } ); 
+			$command = sprintf("%s -x %s -y %s -vm %s", $mplayer, $width, $height, $binkhash{ lc($ARGV[0]) } );
 		} else { 
 			# Note:  -vo x11 also works for older versions of mplayer
-			$command = sprintf("%s -x %s -y %s -vo sdl %s", $mplayer, $width, $height, $hash{ lc($ARGV[0]) } ); 
+			$command = sprintf("%s -x %s -y %s %s", $mplayer, $width, $height, $binkhash{ lc($ARGV[0]) } );
 		}
 		$played = 1; 
 	}
 
 
 	if( $plaympeg ne "" && !$played ) { 	
-		if( !defined( $hash{ lc($ARGV[0]) } ) ) { 
-			if( $fullscreen ) { 
-				$command = sprintf("%s --scale %sx%s --fullscreen %s", $plaympeg, $width, $height, $hash{ lc($ARGV[0]) } ); 
-			} else { 
-				$command = sprintf("%s --scale %sx%s %s", $plaympeg, $width, $height, $hash{ lc($ARGV[0]) } ); 
-			}
+		if( $fullscreen ) { 
+			$command = sprintf("%s --scale %sx%s --fullscreen %s", $plaympeg, $width, $height, $binkhash{ lc($ARGV[0]) } );
 		} else { 
-			if( $fullscreen ) { 
-				$command = sprintf("%s --scale %sx%s --fullscreen %s", $plaympeg, $width, $height, $hash{ lc($ARGV[0]) } ); 
-			} else { 
-				$command = sprintf("%s --scale %sx%s %s", $plaympeg, $width, $height, $hash{ lc($ARGV[0]) } ); 
-			}
+			$command = sprintf("%s --scale %sx%s %s", $plaympeg, $width, $height, $binkhash{ lc($ARGV[0]) } );
 		}
 		$played = 1; 
 	}
